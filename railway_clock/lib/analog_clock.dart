@@ -20,9 +20,6 @@ final radiansPerTick = radians(360 / 60);
 /// Total distance traveled by an hour hand, each hour, in radians.
 final radiansPerHour = radians(360 / 12);
 
-/// A basic analog clock.
-///
-/// You can do better than this!
 class AnalogClock extends StatefulWidget {
   const AnalogClock(this.model);
 
@@ -79,13 +76,6 @@ class _AnalogClockState extends State<AnalogClock> {
 
   @override
   Widget build(BuildContext context) {
-    // There are many ways to apply themes to your clock. Some are:
-    //  - Inherit the parent Theme (see ClockCustomizer in the
-    //    flutter_clock_helper package).
-    //  - Override the Theme.of(context).colorScheme.
-    //  - Create your own [ThemeData], demonstrated in [AnalogClock].
-    //  - Create a map of [Color]s to custom keys, demonstrated in
-    //    [DigitalClock].
     final customTheme = Theme.of(context).brightness == Brightness.light
         ? Theme.of(context).copyWith(
             primaryColor: Color(0xFF000000),
@@ -100,7 +90,7 @@ class _AnalogClockState extends State<AnalogClock> {
 
     final time = DateFormat.Hms().format(DateTime.now());
 
-    // set line hand thickness based on screen width
+    // set line thickness based on screen width
     final width = MediaQuery.of(context).size.width;
     final thicknessFactor = width * 0.002;
 
@@ -151,7 +141,7 @@ class _AnalogClockState extends State<AnalogClock> {
               thickness: 4 * thicknessFactor,
               size: 1,
               angleRadians: _now.second * radiansPerTick,
-              isSecondHand: true,
+              drawCircle: true,
               offset: -0.25,
             ),
           ],

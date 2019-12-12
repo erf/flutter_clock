@@ -23,7 +23,7 @@ class DrawnHand extends Hand {
     @required double size,
     @required double angleRadians,
     this.offset = 0,
-    this.isSecondHand = false,
+    this.drawCircle = false,
   })  : assert(color != null),
         assert(thickness != null),
         assert(size != null),
@@ -41,7 +41,8 @@ class DrawnHand extends Hand {
   /// The start offset from center to radius [0,1]
   final double offset;
 
-  final bool isSecondHand;
+  /// Draw a circle for the second hand
+  final bool drawCircle;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class DrawnHand extends Hand {
             angleRadians: angleRadians,
             color: color,
             offset: offset,
-            isSecondHand: isSecondHand,
+            drawCircle: drawCircle,
           ),
         ),
       ),
@@ -70,7 +71,7 @@ class _HandPainter extends CustomPainter {
     @required this.angleRadians,
     @required this.color,
     this.offset,
-    this.isSecondHand,
+    this.drawCircle,
   })  : assert(handSize != null),
         assert(lineWidth != null),
         assert(angleRadians != null),
@@ -83,7 +84,7 @@ class _HandPainter extends CustomPainter {
   double angleRadians;
   Color color;
   double offset;
-  bool isSecondHand;
+  bool drawCircle;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -102,7 +103,7 @@ class _HandPainter extends CustomPainter {
 
     canvas.drawLine(start, position, linePaint);
 
-    if (isSecondHand) {
+    if (drawCircle) {
       final circleStart = center + dir * length * 0.8;
       canvas.drawCircle(circleStart, length * 0.1, linePaint);
     }
@@ -113,6 +114,8 @@ class _HandPainter extends CustomPainter {
     return oldDelegate.handSize != handSize ||
         oldDelegate.lineWidth != lineWidth ||
         oldDelegate.angleRadians != angleRadians ||
-        oldDelegate.color != color;
+        oldDelegate.color != color ||
+        oldDelegate.offset != offset ||
+        oldDelegate.drawCircle != drawCircle;
   }
 }
