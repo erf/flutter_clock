@@ -1,10 +1,9 @@
-# Analog Clock
+# Railway Clock
 
-This app is an example of an analog clock.
-It has a light theme and a dark theme, and displays sample weather and location data.
+This is my take on the Flutter clock contest.
 
-<img src='analog.gif' width='350'>
+It has a light and a dark theme.
 
-<img src='analog_dark.png' width='350'>
+<img src='railway_dark.png' width='350'>
 
-<img src='analog_light.png' width='350'>
+<img src='railway_light.png' width='350'>
